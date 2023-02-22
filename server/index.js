@@ -11,7 +11,7 @@ import path  from "path";
 import { fileURLToPath } from "url";
 import connectDb from "./DatabaseConnection.js";
 const app=express();
-const port=process.env.PORT||5001;
+const port=process.env.PORT;
 
 const _filename=fileURLToPath(import.meta.url);
 const _dirname=path.dirname(_filename);
