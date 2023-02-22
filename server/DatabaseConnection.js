@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 const connectDb=async()=>{
     try {
-        const conn=await mongoose.connect("mongodb://localhost:27017/sociout");
+        const conn=await mongoose.connect(process.env.CONNECTION_URL);
         console.log('connected to database',conn.connection.host);
     } catch (error) {
         console.error(error.message); 

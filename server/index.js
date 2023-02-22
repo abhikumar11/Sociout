@@ -11,11 +11,11 @@ import path  from "path";
 import { fileURLToPath } from "url";
 import connectDb from "./DatabaseConnection.js";
 const app=express();
+dotenv.config({path: '.env'})
 const port=process.env.PORT;
 
 const _filename=fileURLToPath(import.meta.url);
 const _dirname=path.dirname(_filename);
-dotenv.config();
 app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({policy:"cross-origin"}));
