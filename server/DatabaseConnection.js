@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-
-export const connectDb=async()=>{
+import dotenv from "dotenv";
+const connectDb=async()=>{
     try {
-        const connect=await mongoose.connect(process.env.CONNECTITON_URL);
+        const conn=await mongoose.connect("mongodb://localhost:27017/sociout");
         console.log('connected to database',conn.connection.host);
     } catch (error) {
         console.error(error.message); 
@@ -10,3 +10,4 @@ export const connectDb=async()=>{
     }
 } 
 mongoose.set('strictQuery', false);
+export default connectDb;
