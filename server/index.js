@@ -10,7 +10,7 @@ import morgan from "morgan";
 import path  from "path";
 import { fileURLToPath } from "url";
 import connectDb from "./DatabaseConnection.js";
-import { register } from "./controllers/auth.js";
+import { register } from "./controllers/AuthController.js";
 const app=express();
 dotenv.config({path: '.env'})
 const port=process.env.PORT;
