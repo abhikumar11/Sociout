@@ -10,6 +10,7 @@ import morgan from "morgan";
 import path  from "path";
 import { fileURLToPath } from "url";
 import connectDb from "./DatabaseConnection.js";
+import { register } from "./controllers/auth.js";
 const app=express();
 dotenv.config({path: '.env'})
 const port=process.env.PORT;
@@ -33,7 +34,9 @@ const storage=multer.diskStorage({
      }  
 });
 const upload=multer({storage});
+
 connectDb();
+app.post("/auth/register",upload.single("picture"),register)
 app.get("/",(req, res) => {
     res.send("<h1>Hello World</h1>");
 });
