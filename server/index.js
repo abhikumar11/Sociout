@@ -12,6 +12,8 @@ import { fileURLToPath } from "url";
 import connectDb from "./DatabaseConnection.js";
 import { register } from "./controllers/AuthController.js";
 import authRoutes from "./routes/AuthRouter.js";
+import userRoutes from "./routes/UserRouter.js";
+import { verifyToken } from "./middleware/auth.js";
 const app=express();
 dotenv.config({path: '.env'})
 const port=process.env.PORT;
