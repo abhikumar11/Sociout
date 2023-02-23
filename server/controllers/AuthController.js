@@ -33,3 +33,25 @@ export const register = async (req, res) => {
         res.status(500).json({error:error.message});
      }
 };
+export const login = async(req, res) => {
+     try {
+      const {email, password} =req.body;
+      const user=User.findOne({email:email});
+      if(!user)
+      {
+          return res.status(400).json({message:"User not found"});
+      }
+      else
+      {
+          const match=await bcrypt.compare(password,user.password);
+          if(!match){
+               return res.status(400).json({message:"Invalid username or password"});
+          }
+          else{
+               const token=Jwt.sign({id:user._id},process.env.PASSWORD_KEY);
+          }
+      }
+     } catch (error) {
+          res.status(500).json({error:error.message}); 
+     }
+}
