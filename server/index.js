@@ -11,6 +11,7 @@ import path  from "path";
 import { fileURLToPath } from "url";
 import connectDb from "./DatabaseConnection.js";
 import { register } from "./controllers/AuthController.js";
+import authRoutes from "./routes/AuthRouter.js";
 const app=express();
 dotenv.config({path: '.env'})
 const port=process.env.PORT;
@@ -37,6 +38,7 @@ const upload=multer({storage});
 
 connectDb();
 app.post("/auth/register",upload.single("picture"),register)
+app.use("/auth",authRoutes);
 app.get("/",(req, res) => {
     res.send("<h1>Hello World</h1>");
 });

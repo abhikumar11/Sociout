@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import Jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import User from "../schema/User.js";
 export const register = async (req, res) => {
      try {
@@ -48,7 +48,9 @@ export const login = async(req, res) => {
                return res.status(400).json({message:"Invalid username or password"});
           }
           else{
-               const token=Jwt.sign({id:user._id},process.env.PASSWORD_KEY);
+               const token=jwt.sign({id:user._id},process.env.PASSWORD_KEY);
+               delete user.password;
+               res.status(200).json({token,user});
           }
       }
      } catch (error) {
