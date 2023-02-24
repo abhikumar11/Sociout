@@ -13,7 +13,9 @@ import connectDb from "./DatabaseConnection.js";
 import { register } from "./controllers/AuthController.js";
 import authRoutes from "./routes/AuthRouter.js";
 import userRoutes from "./routes/UserRouter.js";
+import postRoutes from "./routes/PostRouter.js";
 import { verifyToken } from "./middleware/auth.js";
+import { createPost } from "./middleware/post.js";
 const app=express();
 dotenv.config({path: '.env'})
 const port=process.env.PORT;
@@ -40,7 +42,10 @@ const upload=multer({storage});
 
 connectDb();
 app.post("/auth/register",upload.single("picture"),register)
+app.post("/post",verifyToken,upload.single("picture"),createPost);
 app.use("/auth",authRoutes);
+app.use("/user",userRoutes);
+app.use("/post",postRoutes);
 app.get("/",(req, res) => {
     res.send("<h1>Hello World</h1>");
 });
