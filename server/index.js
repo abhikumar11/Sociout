@@ -15,7 +15,7 @@ import authRoutes from "./routes/AuthRouter.js";
 import userRoutes from "./routes/UserRouter.js";
 import postRoutes from "./routes/PostRouter.js";
 import { verifyToken } from "./middleware/auth.js";
-import { createPost } from "./middleware/post.js";
+import { createPost } from "./controllers/PostController.js";
 const app=express();
 dotenv.config({path: '.env'})
 const port=process.env.PORT;
